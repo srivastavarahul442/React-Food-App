@@ -47,3 +47,11 @@
     flex-wrap: wrap;
     gap: 10px;
 }
+
+.filter{
+    margin: 10px;
+}
+.filter-btn{
+    padding: 5px;
+    font-size: 1rem;
+}
