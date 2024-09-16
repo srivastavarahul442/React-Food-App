@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
+import { Link } from "react-router-dom";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
@@ -17,6 +18,7 @@ const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const jsonData = await data.json();
+    // console.log(jsonData)
     //optional chaining
     setListOfRestaurant(
       jsonData?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
@@ -58,9 +60,9 @@ const Body = () => {
             className="filter-btn"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
-                (res) => res.info.avgRating > 4.5
+                (res) => res.info.avgRating > 4.3
               );
-              setListOfRestaurant(filteredList);
+              setFilteredRestaurant(filteredList);
             }}
           >
             Top Rated Restaurant
@@ -69,7 +71,7 @@ const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((restaurant) => (
-          <RestaurantCard key={restaurant.info.id} resData={restaurant.info} />
+          <Link key={restaurant.info.id} to={"/restaurants/"+restaurant.info.id}><RestaurantCard resData={restaurant.info} /></Link>
         ))}
       </div>
     </div>
