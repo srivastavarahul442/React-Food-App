@@ -3,11 +3,14 @@ import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import ShimmerUI from "./ShimmerUI";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
   const [listOfRestaurants, setListOfRestaurant] = useState([]);
   const [filteredRestaurants, setFilteredRestaurant] = useState([]);
   const [searchText, setSearcheText] = useState("");
+  
+  const onlineStatus = useOnlineStatus();
 
   useEffect(() => {
     fetchData();
@@ -29,6 +32,12 @@ const Body = () => {
         ?.restaurants
     );
   };
+
+  if(onlineStatus===false){
+    return(
+      <h1>Your connection is weak, pls try again</h1>
+    )
+  }
 
   return listOfRestaurants.length === 0 ? (
     <ShimmerUI />
