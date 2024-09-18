@@ -9,10 +9,11 @@ const useRestaurantMenu = (resID) =>{
     },[])
 
     const fetchData = async () =>{
-        const data = fetch(MENU_URL+resID+"&catalog_qa=undefined&submitAction=ENTER")
+        const data =await fetch(MENU_URL+resID+"&catalog_qa=undefined&submitAction=ENTER")
 
           const jsonData = await data.json();
           setResInfo(jsonData)
+        //   console.log(jsonData)
     }
 
     return resInfo;
