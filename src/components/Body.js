@@ -42,8 +42,8 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <ShimmerUI />
   ) : (
-    <div className="body">
-      <div className="search-filter-container">
+    <div className="">
+      <div className="m-3 p-3 border-gray-300 flex">
         <div className="search-input">
           <input
             className="input"
@@ -53,7 +53,7 @@ const Body = () => {
             onChange={(e) => setSearcheText(e.target.value)}
           />
           <button
-            className="search-btn"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded mx-3"
             onClick={() => {
               const filterRes = listOfRestaurants.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText.toLowerCase())
@@ -66,7 +66,7 @@ const Body = () => {
         </div>
         <div className="filter">
           <button
-            className="filter-btn"
+            className="bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-3 rounded"
             onClick={() => {
               const filteredList = listOfRestaurants.filter(
                 (res) => res.info.avgRating > 4.3
@@ -78,7 +78,7 @@ const Body = () => {
           </button>
         </div>
       </div>
-      <div className="res-container">
+      <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => (
           <Link key={restaurant.info.id} to={"/restaurants/"+restaurant.info.id}><RestaurantCard resData={restaurant.info} /></Link>
         ))}
