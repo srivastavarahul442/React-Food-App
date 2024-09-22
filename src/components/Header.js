@@ -15,12 +15,12 @@ const Header = () => {
     console.log("header useEffect")
   },[])
   return (
-    <div className="h-48 flex justify-between bg-green-100 p-4 shadow-lg border shadow-gray-300">
+    <div className="h-30 flex justify-between bg-green-100 p-4 shadow-lg border shadow-gray-300">
       <div className="">
-        <img className="h-40" src={LOGO_URL} />
+        <img className="h-[130px] rounded-full" src={LOGO_URL} />
       </div>
-      <div className="">
-        <ul className="flex justify- gap-7 mt-14">
+      <div className="flex items-center">
+        <ul className="flex justify- gap-7">
           <li>Online Status: {onlieStatus?"✅":"🔴"}</li>
           <li><Link to={"/"}>Home</Link></li>
           <li><Link to={"/about"}>About Us</Link></li>

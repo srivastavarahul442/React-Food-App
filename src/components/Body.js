@@ -10,7 +10,8 @@ const Body = () => {
   const [filteredRestaurants, setFilteredRestaurant] = useState([]);
   const [searchText, setSearcheText] = useState("");
   
-  const onlineStatus = useOnlineStatus();
+
+  const onlineStatus = useOnlineStatus(RestaurantCard);
 
   useEffect(() => {
     fetchData();
@@ -33,10 +34,8 @@ const Body = () => {
     );
   };
 
-  if(onlineStatus===false){
-    return(
-      <h1>Your connection is weak, pls try again</h1>
-    )
+  if (onlineStatus === false) {
+    return <h1>Your connection is weak, pls try again</h1>;
   }
 
   return listOfRestaurants.length === 0 ? (
@@ -46,7 +45,7 @@ const Body = () => {
       <div className="m-3 p-3 border-gray-300 flex">
         <div className="search-input">
           <input
-            className="input"
+            className="bg-green-50 border border-green-300 text-white-900 text-sm rounded-lg h-8 pl-2"
             type="text"
             placeholder="Search Restaurants"
             value={searchText}
@@ -80,7 +79,12 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap">
         {filteredRestaurants.map((restaurant) => (
-          <Link key={restaurant.info.id} to={"/restaurants/"+restaurant.info.id}><RestaurantCard resData={restaurant.info} /></Link>
+          <Link
+            key={restaurant.info.id}
+            to={"/restaurants/" + restaurant.info.id}
+          >
+            <RestaurantCard resData={restaurant.info} />
+          </Link>
         ))}
       </div>
     </div>
